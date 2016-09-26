@@ -16,9 +16,14 @@ mytoken = content(response)$access_token
  
 # TODO pull in data from top 200 csv, csv will have to be manually downloaded??
 # Try to get hyper link and use regex to update download path name.
-Date924 <- "https://spotifycharts.com/regional/global/daily/2016-09-24"
-Date715 <- "https://spotifycharts.com/regional/global/daily/2016-07-15"
+Date924 <- "https://spotifycharts.com/regional/global/daily/2016-09-24/download"
+Date715 <- "https://spotifycharts.com/regional/global/daily/2016-07-15/download"
 # Download the data through these urls:
+
+# Extract the TrackID
+s <- read.csv("regional-global-daily-2016-09-24.csv", header = TRUE, strip.white = TRUE)
+#s <- "https://open.spotify.com/track/7BKLCZ1jbUBVqRi2FVlTVw"
+s$trackID <- substr(s$URL, 32, 53)
 
 
 ## pulls data for given track, obtain this through top 200 list.
