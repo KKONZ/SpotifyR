@@ -26,12 +26,6 @@ Oct <- data.frame(Month <- "10",Thry1DaysStrng); OctFiles <- data.frame(paste(Oc
 Nov <- data.frame(Month <- "11",ThryDaysStrng); NovFiles <- data.frame(paste(Nov[ ,1], "-",Nov[ ,2], sep ="")); colnames(NovFiles) <- "Date"; rm(Nov)
 Dec <- data.frame(Month <- "12",Thry1DaysStrng); DecFiles <- data.frame(paste(Dec[ ,1], "-",Dec[ ,2], sep ="")); colnames(DecFiles) <- "Date"; rm(Dec)
 
-#$FullDate <- paste("2015", $Date, sep="")
-
-#Jan2015 <- data.frame(JanFiles$FullDate15 <- paste("2015", JanFiles$Date, sep="-")); colnames(Jan2015) <- "Date"
-#Feb2015 <- data.frame(Feb15Files$FullDate15 <- paste("2015", Feb15Files$Date, sep="-")); colnames(Feb2015) <- "Date"
-#Mar2015 <- data.frame(MarFiles$FullDate15 <- paste("2015", MarFiles$Date, sep="-")); colnames(Mar2015) <- "Date"
-#Apr2015 <- data.frame(AprFiles$FullDate15 <- paste("2015", AprFiles$Date, sep="-")); colnames(Apr2015) <- "Date"
 May2015 <- data.frame(MayFiles$FullDate15 <- paste("2015", MayFiles$Date, sep="-")); colnames(May2015) <- "Date"
 Jun2015 <- data.frame(JuneFiles$FullDate15 <- paste("2015", JuneFiles$Date, sep="-")); colnames(Jun2015) <- "Date"
 Jul2015 <- data.frame(JulyFiles$FullDate15 <- paste("2015", JulyFiles$Date, sep="-")); colnames(Jul2015) <- "Date" 
@@ -51,10 +45,7 @@ Jul2016 <- data.frame(JulyFiles$Date16 <- paste("2016", JulyFiles$Date, sep="-")
 Aug2016 <- data.frame(AugFiles$Date16 <- paste("2016", AugFiles$Date, sep="-")); colnames(Aug2016) <- "Date"
 Sept2016 <- data.frame(SeptFiles$Date16 <- paste("2016", SeptFiles$Date, sep="-")); colnames(Sept2016) <- "Date"
 
-
-
-DateFile2015 <- rbind(#Jan2015, Feb2015, Mar2015, Apr2015, 
-                      May2015, Jun2015, Jul2015, Aug2015, Sept2015, Oct2015, Nov2015, Dec2015)
+DateFile2015 <- rbind(May2015, Jun2015, Jul2015, Aug2015, Sept2015, Oct2015, Nov2015, Dec2015)
 
 DateFile2016 <- rbind(Jan2016, Feb2016, Mar2016, Apr2016, May2016, Jun2016, Jul2016, Aug2016, Sept2016)
 
@@ -67,11 +58,6 @@ DownloadDF16 <- data.frame(paste("https://spotifycharts.com/regional/global/dail
 
 DownloadDF <- rbind(DownloadDF15, DownloadDF16); rm(DownloadDF15); rm(DownloadDF16)
 DownloadDF <- cbind(DownloadDF, DateFile)
-
-
-#DownloadDF$DestFile <- paste(DestFile[1:153, ], "csv", sep = '.')
-
-
 
 setwd("C:/Users/karlk/Desktop/EconometricsData/SpotifyData")
 for (r in 1:nrow(DownloadDF)) {
