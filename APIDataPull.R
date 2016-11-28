@@ -17,8 +17,8 @@ mytoken = content(response)$access_token
 HeaderValue = paste0('Bearer ', mytoken)
 
 
-n <- as.integer(length(SpotifyTracks)/100)
-n_mod <- length(SpotifyTracks) %% 100
+n <- as.integer(length(SpotifyTracks[ ,1])/100)
+n_mod <- length(SpotifyTracks[ ,1]) %% 100
   
 
 ModTracks <- tail(SpotifyTracks, n_mod)
