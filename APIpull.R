@@ -6,7 +6,7 @@ secret = 'xxxx' # Register spotify app to generate secret
 
 response = POST(
   'https://accounts.spotify.com/api/token',
-  'https://accounts.spotify.com/api/token',
+  accept_json(),
   authenticate(clientID, secret),
   body = list(grant_type = 'client_credentials'),
   encode = 'form',
