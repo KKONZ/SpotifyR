@@ -36,4 +36,38 @@ dfchunk2 <- paste0(ModTracks$SpotifyTracks,collapse=",")
 dfchunk <- split(Chunk1, 1:19)
 
 for(i in 1:19){
+  dfchunk[[i]] <- paste0(dfchunk[[i]][, 1],collapse=",")
+}
+
+
+Trackraw <- as.list(1:100)
+dftest <- data.frame(matrix(ncol = 18))
+dfComplete <- data.frame(matrix(nrow = 0 ,ncol = 18))
+
+colnames(dfComplete) <- ColumnNames
+
+for(i in 1:19){
+ URI = paste0('https://api.spotify.com/v1/audio-features/?ids=', dfchunk[[i]]) 
+ response2 = GET(url = URI, add_headers(Authorization = HeaderValue))
+ dfInit <- data.frame(matrix(nrow = 0, ncol = 18))
+ colnames(dfInit) <- ColumnNames
+ Trackraw = content(response2)
+ df <- data.frame(matrix(unlist(Trackraw), nrow=100, byrow=T),stringsAsFactors=FALSE)
+  colnames(df) <- ColumnNames
+  dftemp <- rbind(df, dfInit)
+  dfComplete <- rbind(dftemp, dfComplete)
+  dfComplete <- unique(dfComplete)
+}
+
+URI = paste0('https://api.spotify.com/v1/audio-features/?ids=', dfchunk2) 
+response2 = GET(url = URI, add_headers(Authorization = HeaderValue))
+Trackraw2 = content(response2)
+df2 <- data.frame(matrix(unlist(Trackraw2), n_mod, byrow=T),stringsAsFactors=FALSE)
+colnames(df2) <- ColumnNames
+
+dfComplete <- rbind(dfComplete, df2)
+
+setwd("C:/Users/qh1444dd/Desktop/Demo")
+write.csv(dfComplete, file = "SpotifyAudioFeature.csv", row.names = FALSE)
+
 
