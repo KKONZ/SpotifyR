@@ -6,10 +6,7 @@ listtxt <- dir(pattern = "*.csv")
 
 ldf = lapply(listtxt, function(x) {
   
-  dat = read.csv(x, header=TRUE)
-  
-  # Add column names
-  # names(dat) = c('Name', 'Sex', 'Number')
+  dat = read.csv(x, header=TRUE, stringsAsFactors = FALSE)
   
   # Add a column with the year
   dat$Date = substr(x,1,10)
