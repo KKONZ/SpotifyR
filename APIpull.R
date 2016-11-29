@@ -40,8 +40,8 @@ for(i in 1:19){
 }
 
 
-Trackraw <- as.list(1:100)
-dftest <- data.frame(matrix(ncol = 18))
+#Trackraw <- as.list(1:100)
+# dftest <- data.frame(matrix(ncol = 18))
 dfComplete <- data.frame(matrix(nrow = 0 ,ncol = 18))
 
 colnames(dfComplete) <- ColumnNames
@@ -70,4 +70,65 @@ dfComplete <- rbind(dfComplete, df2)
 setwd("C:/Users/qh1444dd/Desktop/Demo")
 write.csv(dfComplete, file = "SpotifyAudioFeature.csv", row.names = FALSE)
 
+
+n2 = 38
+dfchunk3 <- split(Chunk1, 1:n2)
+
+for(i in 1:38){
+  dfchunk3[[i]] <- paste0(dfchunk3[[i]][, 1],collapse=",")
+}
+
+
+
+# Pulls Track Info 
+dfTrackComplete <- data.frame(matrix(nrow = 0, ncol = 9))
+
+
+for(i in 1:38){
+  URI = paste0('https://api.spotify.com/v1/tracks/?ids=', dfchunk3[[i]]) 
+  response2 = GET(url = URI, add_headers(Authorization = HeaderValue))
+#  dfInit <- data.frame(matrix(nrow = 0, ncol = 18))
+#  colnames(dfInit) <- ColumnNames
+#  Sys.sleep(10)
+  Trackraw = content(response2)
+  for(i in 1:50){
+    dfInit <- data.frame(matrix(nrow = 0, ncol = 9))
+    Albumtype <- Trackraw$tracks[[i]]$album$album_type
+    ArtistID <- Trackraw$tracks[[i]]$album$artists[[1]]$id
+    ArtistName <- Trackraw$tracks[[i]]$album$artists[[1]]$name
+    AlbumID <- Trackraw$tracks[[i]]$album$id
+    AlbumName <- Trackraw$tracks[[i]]$album$name
+    DiskNumber <- Trackraw$tracks[[i]]$disc_number
+    TrackPopularity <- Trackraw$tracks[[i]]$popularity
+    TrackID <- Trackraw$tracks[[i]]$id
+    TrackName <- Trackraw$tracks[[i]]$name
+    dfInit <- cbind(Albumtype, ArtistID, ArtistName, AlbumID, AlbumName, TrackPopularity, DiskNumber, TrackID, TrackName)
+    dfTrackComplete <- rbind(dfInit, dfTrackComplete)
+  }
+}
+
+
+
+
+
+# Pull Modulus Track Data
+URI = paste0('https://api.spotify.com/v1/tracks/?ids=', dfchunk2)
+response2 = GET(url = URI, add_headers(Authorization = HeaderValue))
+Trackraw2 = content(response2)
+
+
+for(i in 1:12){
+dfInit <- data.frame(matrix(nrow = 0, ncol = 9))
+Albumtype <- Trackraw2$tracks[[i]]$album$album_type
+ArtistID <- Trackraw2$tracks[[i]]$album$artists[[1]]$id
+ArtistName <- Trackraw2$tracks[[i]]$album$artists[[1]]$name
+AlbumID <- Trackraw2$tracks[[i]]$album$id
+AlbumName <- Trackraw2$tracks[[i]]$album$name
+DiskNumber <- Trackraw2$tracks[[i]]$disc_number
+TrackPopularity <- Trackraw2$tracks[[i]]$popularity
+TrackID <- Trackraw2$tracks[[i]]$id
+TrackName <- Trackraw2$tracks[[i]]$name
+dfInit <- cbind(Albumtype, ArtistID, ArtistName, AlbumID, AlbumName, TrackPopularity, DiskNumber, TrackID, TrackName)
+dfTrackComplete <- rbind(dfInit, dfTrackComplete)
+}
 
