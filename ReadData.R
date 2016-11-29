@@ -17,7 +17,7 @@ ldf = lapply(listtxt, function(x) {
 })
 
 library(dplyr)
-SpotifyDF = rbind_all(ldf)
+SpotifyDF = bind_rows(ldf)
 
 
 head(SpotifyDF)
