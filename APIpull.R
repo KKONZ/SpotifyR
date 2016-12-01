@@ -67,7 +67,7 @@ colnames(df2) <- ColumnNames
 
 dfComplete <- rbind(dfComplete, df2)
 
-setwd("C:/Users/qh1444dd/Desktop/Demo")
+setwd("~/Desktop")
 write.csv(dfComplete, file = "SpotifyAudioFeature.csv", row.names = FALSE)
 
 
