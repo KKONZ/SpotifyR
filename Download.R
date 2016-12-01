@@ -1,4 +1,4 @@
-setwd("C:/Users/karlk/Desktop/EconometricsData")
+setwd("~/Desktop")
 
 ThryDays <- seq(from = 1, to = 30, by = 1)
 ThryDaysStrng <- ifelse(ThryDays < 10, paste("0", ThryDays,sep=""), as.character(ThryDays)); rm(ThryDays)
@@ -59,7 +59,7 @@ DownloadDF16 <- data.frame(paste("https://spotifycharts.com/regional/global/dail
 DownloadDF <- rbind(DownloadDF15, DownloadDF16); rm(DownloadDF15); rm(DownloadDF16)
 DownloadDF <- cbind(DownloadDF, DateFile)
 
-setwd("C:/Users/karlk/Desktop/EconometricsData/SpotifyData")
+setwd("~/Desktop/SpotifyData")
 for (r in 1:nrow(DownloadDF)) {
   download.file(paste(DownloadDF[r,1], sep = ""), 
                 destfile=DownloadDF[r,2])
