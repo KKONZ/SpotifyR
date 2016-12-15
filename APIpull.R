@@ -132,3 +132,12 @@ dfInit <- cbind(Albumtype, ArtistID, ArtistName, AlbumID, AlbumName, TrackPopula
 dfTrackComplete <- rbind(dfInit, dfTrackComplete)
 }
 
+
+
+# Add in the Caret logic for data partitioning
+
+# Importance modeling
+
+# Fit lm
+
+# Correlation matrix of importance variables
